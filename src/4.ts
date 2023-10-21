@@ -3,42 +3,47 @@ class Key {
   constructor() {
     this.signature = Math.random();
   }
-  public getSignature(this: Key): number {
+  public getSignature(): number {
     return this.signature;
   }
 }
 class Person extends Key {
   constructor(private key: Key) {
-    super();
+      // мені підкреслює червоним і каже що потрібен супер
+      
   }
 
-  public getKey() {
+    public getKey(): {}{
     return this.key;
   }
 }
 abstract class House {
   protected door: boolean = false;
   protected key: Key;
-  protected tenants: Person[] = [];
+ private tenants: Person[] = [];
   constructor(key: Key) {
     this.key = key;
   }
 
   abstract openDoor(key: Key): void;
 
-  public comeIn(tenant: Person) {
+  public comeIn(tenant: Person): Person[]  { 
     if (this.door) {
-      this.tenants.push(tenant);
+        this.tenants.push(tenant);
+        
+      }
+      return this.tenants
     }
-  }
+   
 }
 
 class MyHouse extends House {
-  openDoor(key: Key) {
+  openDoor(key: Key) : void {
     if (key.getSignature() === this.key.getSignature()) {
-      this.door = true;
+        this.door = true;
+       
     }
-    return;
+   
   }
 }
 
